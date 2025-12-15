@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Visual | Fotografía & Video</title>
+  <style>
+    :root {
+      --primary:#0f172a;
+      --secondary:#1e293b;
+      --accent:#22d3ee;
+      --accent2:#a855f7;
+      --light:#f8fafc;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',Arial,sans-serif;background:var(--light);color:#111;line-height:1.6}
+    nav{position:fixed;top:0;width:100%;background:rgba(15,23,42,.95);color:white;padding:.8rem 1.5rem;display:flex;justify-content:space-between;align-items:center;z-index:10}
+    nav a{color:white;margin-left:1rem;text-decoration:none;font-weight:600}
+    header{background:url('hero.jpg') center/cover no-repeat;height:100vh;color:white;position:relative}
+    header::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.6),rgba(88,28,135,.6))}
+    header .content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1rem}
+    header h1{font-size:3rem;margin-bottom:1rem}
+    header p{max-width:600px;margin-bottom:1.5rem}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#111;padding:.8rem 1.6rem;text-decoration:none;border-radius:999px;font-weight:700;border:none;cursor:pointer}
+    section{padding:5rem 2rem;max-width:1200px;margin:auto}
+    h2{text-align:center;margin-bottom:2.5rem;font-size:2.3rem}
+
+    /* SERVICIOS */
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+    .card{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.12);text-align:center;cursor:pointer;transition:.3s}
+    .card:hover{transform:translateY(-6px)}
+
+    /* GALERIA */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+    .gallery img{width:100%;border-radius:14px;cursor:pointer}
+
+    /* CONTACTO */
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .contact form{display:flex;flex-direction:column}
+    .contact input,.contact textarea{margin-bottom:1rem;padding:.8rem;border-radius:10px;border:1px solid #ccc}
+    footer{background:var(--primary);color:white;text-align:center;padding:2rem}
+    .social a{color:white;margin:0 .5rem;font-weight:600}
+
+    /* MODALES */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;justify-content:center;align-items:center;z-index:20}
+    .modal-content{background:white;padding:2rem;border-radius:18px;max-width:500px;width:90%;text-align:center;position:relative}
+    .modal img{max-width:100%;border-radius:14px}
+    .close{position:absolute;top:10px;right:15px;font-size:1.5rem;cursor:pointer}
+
+    @media(max-width:768px){.contact{grid-template-columns:1fr}header h1{font-size:2.2rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <strong>Studio Visual</strong>
+  <div>
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<header>
+  <div class="content">
+    <h1>Capturamos tu historia</h1>
+    <p>Fotografía, video y tomas aéreas con dron para eventos sociales llenos de emoción.</p>
+    <a href="#contacto" class="btn">Cotiza tu evento</a>
+  </div>
+</header>
+
+<section id="servicios">
+  <h2>Servicios</h2>
+  <div class="services">
+    <div class="card" onclick="openService('Fotografía Profesional','Cobertura completa del evento, sesión previa, edición profesional y entrega digital.')">
+      <h3>Fotografía Profesional</h3>
+      <p>Eventos sociales</p>
+    </div>
+    <div class="card" onclick="openService('Video Cinematográfico','Grabación en alta resolución, edición creativa, clips para redes sociales.')">
+      <h3>Video Cinematográfico</h3>
+      <p>Estilo moderno</p>
+    </div>
+    <div class="card" onclick="openService('Tomas Aéreas con Dron','Imágenes aéreas espectaculares con dron de gama alta y pilotos certificados.')">
+      <h3>Tomas con Dron</h3>
+      <p>Perspectivas únicas</p>
+    </div>
+    <div class="card" onclick="openService('Paquetes Personalizados','Combinamos fotografía, video y dron según tu evento y presupuesto.')">
+      <h3>Paquetes</h3>
+      <p>A tu medida</p>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <h2>Galería</h2>
+  <div class="gallery">
+    <img src="galeria1.jpg" onclick="openImage(this.src)">
+    <img src="galeria2.jpg" onclick="openImage(this.src)">
+    <img src="galeria3.jpg" onclick="openImage(this.src)">
+    <img src="galeria4.jpg" onclick="openImage(this.src)">
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <div class="contact">
+    <form onsubmit="enviarMensaje(event)">
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo" required>
+      <textarea rows="5" placeholder="Mensaje"></textarea>
+      <button class="btn" type="submit">Enviar mensaje</button>
+    </form>
+    <div>
+      <h3>Síguenos</h3>
+      <p>Conoce más trabajos en redes sociales</p>
+      <div class="social">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Studio Visual · Sitio estático listo para GitHub Pages</p>
+</footer>
+
+<!-- MODAL SERVICIOS -->
+<div class="modal" id="serviceModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('serviceModal')">×</span>
+    <h3 id="serviceTitle"></h3>
+    <p id="serviceDesc"></p>
+  </div>
+</div>
+
+<!-- MODAL GALERIA -->
+<div class="modal" id="imageModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('imageModal')">×</span>
+    <img id="modalImg">
+  </div>
+</div>
+
+<script>
+  function enviarMensaje(e){e.preventDefault();alert('Gracias por tu mensaje, pronto te contactaremos.');}
+  function openService(title,desc){
+    document.getElementById('serviceTitle').innerText=title;
+    document.getElementById('serviceDesc').innerText=desc;
+    document.getElementById('serviceModal').style.display='flex';
+  }
+  function openImage(src){
+    document.getElementById('modalImg').src=src;
+    document.getElementById('imageModal').style.display='flex';
+  }
+  function closeModal(id){document.getElementById(id).style.display='none';}
+</script>
+
+</body>
+</html>
